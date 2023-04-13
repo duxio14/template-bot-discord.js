@@ -32,10 +32,23 @@ Avant de démarrer le bot, renommez le fichier example.env en .env et configurer
 
 ```dotenv
 TOKEN= token du bot
-
-DB_PASSWORS= mdp de la base de donnée (nulle si vous êtes en local)
-
 COLOR= La couleur des embeds
+```
+
+## Paramètres de la base de donées
+
+```json
+{
+    "database": {
+        "host": "", // localhost
+        "username": "", // root
+        "password": "",
+        "databaseName": "",
+        "port": 3306,
+        "dialect": "", // mysql
+        "databaseLogs": false
+    }
+}
 ```
 
 ## Démarrer le bot
@@ -66,6 +79,7 @@ module.exports = {
   botPerms: ["SendMessages"],
 
   execute(interaction, client) {
+
     const embed = new EmbedBuilder()
       .setTitle('Hello')
       .setDescription(`Bonjour ${interaction.user}! Comment allez-vous ?`)
