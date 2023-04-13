@@ -1,8 +1,6 @@
 # Template Bot Discord.js
 
 ![Discord.js](https://img.shields.io/badge/Discord.js-v14.8.0-blue.svg)
-![Downloads](https://img.shields.io/npm/dt/discord.js.svg)
-![Stars](https://img.shields.io/github/stars/duxio14/template-bot-discord.js.svg)
 
 Template de bot Discord.js très pratique.
 
