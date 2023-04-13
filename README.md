@@ -51,14 +51,6 @@ COLOR= La couleur des embeds
 }
 ```
 
-```
-TOKEN= token du bot
-
-DB_PASSWORS= mdp de la base de donnée (nulle si vous êtes en local)
-
-COLOR= La couleur des embeds
-```
-
 ## Démarrer le bot
 
 Enfin, pour démarrer le bot, exécutez la commande suivante :
