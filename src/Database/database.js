@@ -1,17 +1,17 @@
 const sequelize = require("sequelize");
-require("dotenv");
+const config = require("../../config.json");
 
 const sequelizeInstance = new sequelize.Sequelize({
-    host: "", 
-    username: "", 
-    password: process.env.DB_PASSWORD,
-    database: "",
-    port: 3306,
-    dialect: '',
+    host: config.database.host, 
+    username: config.database.username, 
+    password: config.database.password,
+    database: config.database.databaseName,
+    port: config.database.port,
+    dialect: config.database.dialect,
     define: {
         timestamps: true
     },
-    logging: false,
+    logging: config.database.databaseLogs,
 });
 
 module.exports = { sequelizeInstance };
