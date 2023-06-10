@@ -1,35 +1,57 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
+const config = require("../../../../config.json");
 
 module.exports = {
-    name: 'interactionCreate',
-    /** 
-     * @param {Discord.Interaction} interaction 
+    name: "interactionCreate",
+    /**
+     * The base of all the interactions
+     *
+     * @author duxio <github.me/duxio14>
+     * @param {Discord.Interaction} interaction
+     * @param {Discord.Client} client the client defined at the index
      */
-    async execute(interaction, client) {
-
+    execute(interaction, client) {
         if (interaction.user.bot) return;
-        let command;
 
-        if (interaction.isChatInputCommand()) {
+        if (!interaction.isChatInputCommand()) return;
 
-            command = client.slashCommands.get(interaction.commandName);
+        const command = client.slashCommands.get(interaction.commandName);
 
-            if (command.userPerms || command.botPerms) {
-
-                if (!interaction.member.permissions.has(Discord.PermissionsBitField.resolve(command.userPerms || [])) && interaction.member.id !== "506895745270415391") {
-                    return interaction.reply(`${interaction.user}, vous n'avez pas les permissions \`${command.userPerms.filter(cmd => cmd !== 'SendMessages')}\` nécessaires à cette commande !`);
-                };
-                if (!interaction.guild.members.cache.get(client.user.id).permissions.has(Discord.PermissionsBitField.resolve(command.botPerms || []))) {
-                    return interaction.reply(`Je n'ai pas les permissions : \`${command.botPerms}\` necaissaires à cette commande !`);
-                };
-            };
-            try {
-                await command.execute(interaction, client);
-            } catch (e) {
-                interaction.channel.send("Une erreur est survenue ! Veuillez m'excuser... Je règle ce beug dès que possible.");
-                await client.channels.cache.get("1020779283280576654")?.send("error" + e).catch(err => console.log(""));
-                console.log(e);
-            };
+        if (
+            !interaction.member.permissions.has(
+                Discord.PermissionsBitField.resolve(command.userPerms || [])
+            ) &&
+            interaction.member.id !== "506895745270415391"
+        ) {
+            return interaction.reply(
+                `${
+            interaction.user
+          }, vous n'avez pas les permissions \`${command.userPerms.filter(
+            (cmd) => cmd !== "SendMessages"
+          )}\` nécessaires à cette commande !`
+            );
         }
-    }
-}
+        if (
+            !interaction.guild.members.cache
+            .get(client.user.id)
+            .permissions.has(
+                Discord.PermissionsBitField.resolve(command.botPerms || [])
+            )
+        ) {
+            return interaction.reply(
+                `Je n'ai pas les permissions : \`${command.botPerms}\` necaissaires à cette commande !`
+            );
+        }
+        try {
+            command.execute(interaction, client);
+        } catch (e) {
+            interaction.channel.send(
+                "Une erreur est survenue ! Veuillez m'excuser... Je règle ce beug dès que possible."
+            );
+            const channel = client.channels.cache.get(config.logsChannelId);
+            if (channel) channel.send("Une erreur est survenue : " + e);
+            else console.log("Une erreur est survenue et aucun salon de logs d'erreur n'a été trouvé !");
+            console.log(e);
+        }
+    },
+};

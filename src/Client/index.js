@@ -8,7 +8,7 @@ const {
     Collection
 } = require("discord.js");
 
-module.exports = async client => {
+module.exports = client => {
 
     // Initialisation des collections et de la couleur des embeds
     client.slashCommands = new Collection();

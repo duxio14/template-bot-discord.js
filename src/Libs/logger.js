@@ -1,5 +1,3 @@
-const moment = require("moment");
-
 const colors = {
   'Black': '\x1b[30m',
   'Red': '\x1b[31m',
@@ -21,19 +19,23 @@ const propertys = {
   'Hidden': '\x1b[8m'
 };
 
-moment.locale('fr');
-
 const paint = (string, color = 'reset') => {
   return `${colors[color]}${string}${colors.Reset}`;
-}
+};
 
-const Date = () => propertys.Bright + moment().format('LTS');
+const getCurrentDate = () => {
+  const currentDate = new Date();
+  const hours = String(currentDate.getHours()).padStart(2, '0');
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+  const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+};
 
 const ifExist = (input) => input ? input : '';
 
 const hook = (input, color) => {
   return input ? `${colors.Reset}[${colors[color]}${input}${colors.Reset}]` : '';
-}
+};
 
 const log = (
   type,
@@ -49,14 +51,14 @@ const log = (
       }
 
     console.log(
-      hook(Date(), "Black") +
+      hook(getCurrentDate(), "Black") +
       hook(ifExist(type), primaryColor) +
       hook(prefix, primaryColor) +
       ` ${inputAsPrimaryColor ? propertys.Bright + colors[primaryColor] : ''}` +
       string +
       colors.Reset
     );
-  }
+  };
 };
 
 const print = (string, prefix, inputAsPrimaryColor = false) => ({
@@ -67,4 +69,4 @@ const print = (string, prefix, inputAsPrimaryColor = false) => ({
   error: (...args) => log('ERROR', 'Red', args)(prefix, string, inputAsPrimaryColor)
 });
 
-module.exports = { print, colors, propertys, hook, Date, ifExist, paint };
+module.exports = { print, colors, propertys, hook, getCurrentDate, ifExist, paint };

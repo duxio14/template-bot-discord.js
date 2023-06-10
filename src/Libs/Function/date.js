@@ -1,6 +1,6 @@
 const ms = require("ms");
 
-module.exports = async durationMs => {
+module.exports = durationMs => {
 
     const now = new Date();
     const arrivalTimeMs = now.getTime() + ms(durationMs);

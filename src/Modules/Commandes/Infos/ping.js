@@ -9,7 +9,7 @@ module.exports = {
 	userPerms: ["SendMessages"],
 	botPerms: ["SendMessages"],
 
-	async execute(interaction, client) {
-		await interaction.reply(`Pong !\n**J'ai un ping de** \`${client.ws.ping}ms\``);	
+	execute(interaction, client) {
+		interaction.reply(`Pong !\n**J'ai un ping de** \`${client.ws.ping}ms\``);	
 	},
 };

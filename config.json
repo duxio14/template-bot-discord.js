@@ -1,0 +1,12 @@
+{
+    "Database": {
+        "host": "",
+        "username": "",
+        "password": "",
+        "databaseName": "",
+        "port": 3306,
+        "dialect": "",
+        "databaseLogs": false
+    },
+    "logsChannelId": ""
+}
