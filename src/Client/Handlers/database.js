@@ -1,5 +1,5 @@
-const Database = require("../../Database/index");
+const Database = require("../../Database");
 
 module.exports = () => {
-    Database();
+    return Database();
 }
