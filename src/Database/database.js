@@ -1,7 +1,7 @@
 const sequelize = require("sequelize");
 const config = require("../../config.json");
 
-const sequelizeInstance = new sequelize.Sequelize({
+export const sequelizeInstance = new sequelize.Sequelize({
     host: config.database.host, 
     username: config.database.username, 
     password: config.database.password,
@@ -14,4 +14,3 @@ const sequelizeInstance = new sequelize.Sequelize({
     logging: config.database.databaseLogs,
 });
 
-module.exports = { sequelizeInstance };

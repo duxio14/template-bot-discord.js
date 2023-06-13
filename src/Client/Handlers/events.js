@@ -1,5 +1,11 @@
 const fs = require('fs');
 
+/**
+ * Handler of event
+ * @author duxio <github.me/duxio14>
+ * @param {Discord.Client} client the client defined at the index
+ */
+
 module.exports = client => {
 
     const eventFolders = fs.readdirSync('./src/Modules/Events');

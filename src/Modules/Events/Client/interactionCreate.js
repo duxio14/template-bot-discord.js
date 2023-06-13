@@ -1,15 +1,16 @@
 const Discord = require("discord.js");
 const config = require("../../../../config.json");
 
+/**
+ * The base of all the interactions
+ *
+ * @author duxio <github.me/duxio14>
+ * @param {Discord.Interaction} interaction
+ * @param {Discord.Client} client the client defined at the index
+ */
+
 module.exports = {
     name: "interactionCreate",
-    /**
-     * The base of all the interactions
-     *
-     * @author duxio <github.me/duxio14>
-     * @param {Discord.Interaction} interaction
-     * @param {Discord.Client} client the client defined at the index
-     */
     execute(interaction, client) {
         if (interaction.user.bot) return;
 

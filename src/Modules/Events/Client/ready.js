@@ -1,11 +1,12 @@
 const logger = require("../../../Libs/logger");
 
+/**
+ * Emitted when the client is ready
+ * @param {Discord.Client} client 
+ */
+
 module.exports = {
     name: 'ready',
-    /**
-     * Emitted when the client is ready
-     * @param {Discord.Client} client 
-     */
     execute(client) {
         try {
             client.application.commands.set(client.slashCommands);

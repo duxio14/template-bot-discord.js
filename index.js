@@ -1,4 +1,5 @@
 const ClientLogin = require("./src/Client/index.js");
+const anticrash = require("./src/Libs")
 const {
     Client,
     GatewayIntentBits,
@@ -21,4 +22,5 @@ const client = new Client({
     ],
 });
 
+anticrash();
 ClientLogin(client);
